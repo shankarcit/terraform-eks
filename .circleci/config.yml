@@ -9,8 +9,8 @@ jobs:
       - run:
           name: terraform init & plan
           command: |
-            terraform init -backend-config="~\env\sqa.tfbackend" 
-            terraform plan -backend-config="~\env\sqa.tfbackend" -var-file="C:\paidy\terraform\aks-infra\env\dev.tfvars" -out tfapply  
+            terraform init -backend-config="~/env/sqa.tfbackend" 
+            terraform plan -backend-config="~/env/sqa.tfbackend" -var-file="~/env/sqa.tfvars" -out tfapply  
       - persist_to_workspace:
           root: .
           paths:
@@ -38,7 +38,7 @@ jobs:
       - run:
           name: terraform create destroy plan
           command: |
-            terraform plan -destroy -out tfdestroy -backend-config="~\env\sqa.tfbackend" -var-file="C:\paidy\terraform\aks-infra\env\dev.tfvars" 
+            terraform plan -destroy -out tfdestroy -backend-config="~/env/sqa.tfbackend" -var-file=-var-file="~/env/sqa.tfvars"
       - persist_to_workspace:
           root: .
           paths:
