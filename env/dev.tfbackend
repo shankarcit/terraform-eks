@@ -1,4 +1,4 @@
-bucket = "tf-state-temp-paidy-1700"
-key    = "aks-infra/dev/terraform.tfstate"
+bucket = "tf-state-abc-demo"
+key    = "aks-infra/sqa/terraform.tfstate"
 region = "ap-northeast-1"
-dynamodb_table = "tbl_state_lock_temp_paidy"
+dynamodb_table = "tbl_state_lock_abc_demo"
