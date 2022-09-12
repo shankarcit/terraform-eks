@@ -9,8 +9,8 @@ jobs:
       - run:
           name: terraform init & plan
           command: |
-            terraform init -backend-config=/tmp/project/env/sqa.tfbackend 
-            terraform plan -var-file=/tmp/project/env/sqa.tfvars -out tfapply  
+            terraform init -backend-config=/tmp/project/env/${CIRCLE_BRANCH}.tfbackend 
+            terraform plan -var-file=/tmp/project/env/${CIRCLE_BRANCH}.tfvars -out tfapply  
       - persist_to_workspace:
           root: .
           paths:
@@ -39,7 +39,7 @@ jobs:
       - run:
           name: terraform create destroy plan
           command: |
-            terraform plan -var-file=-var-file=/tmp/project/env/sqa.tfvars -destroy -out tfdestroy
+            terraform plan -var-file=-var-file=/tmp/project/env/${CIRCLE_BRANCH}.tfvars -destroy -out tfdestroy
       - persist_to_workspace:
           root: .
           paths:
@@ -54,5 +54,4 @@ workflows:
       - plan-destroy:
           requires:
             - apply
-            
             
