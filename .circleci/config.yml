@@ -10,7 +10,7 @@ jobs:
           name: terraform init & plan
           command: |
             terraform init -backend-config=/tmp/project/env/sqa.tfbackend 
-            terraform plan -backend-config=/tmp/project/env/sqa.tfbackend -var-file=/tmp/project/env/sqa.tfvars -out tfapply  
+            terraform plan -var-file=/tmp/project/env/sqa.tfvars -out tfapply  
       - persist_to_workspace:
           root: .
           paths:
@@ -38,7 +38,7 @@ jobs:
       - run:
           name: terraform create destroy plan
           command: |
-            terraform plan -destroy -out tfdestroy -backend-config=/tmp/project/env/sqa.tfbackend -var-file=-var-file=/tmp/project/env/sqa.tfvars
+            terraform plan -var-file=-var-file=/tmp/project/env/sqa.tfvars -destroy -out tfdestroy
       - persist_to_workspace:
           root: .
           paths:
