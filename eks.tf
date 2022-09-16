@@ -7,7 +7,7 @@ module "eks" {
   subnet_ids              = module.vpc.private_subnets
   enable_irsa             = true
   eks_managed_node_groups = {
-    soldier_${var.env}_node = {
+    soldier_node = {
       min_size     = var.node_group_min_size
       max_size     = var.node_group_max_size  
       desired_size = var.node_group_desired_size
