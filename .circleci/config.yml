@@ -39,7 +39,8 @@ jobs:
       - run:
           name: terraform create destroy plan
           command: |
-            terraform plan -var-file=-var-file=/tmp/project/env/${CIRCLE_BRANCH}.tfvars -destroy -out tfdestroy
+            terraform plan -var-file=/tmp/project/env/${CIRCLE_BRANCH}.tfvars -destroy -out tfdestroy
+            terraform apply "tfdestroy"
       - persist_to_workspace:
           root: .
           paths:
@@ -51,7 +52,5 @@ workflows:
       - apply:
           requires:
             - plan-apply
-      - plan-destroy:
-          requires:
-            - apply
+
             
